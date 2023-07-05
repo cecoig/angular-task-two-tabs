@@ -1,0 +1,9 @@
+<app-input-field label="Field 1">
+    <input [value]="field1Value" #input (keyup)="onChangeTextField(input.value)"/>
+</app-input-field>
+<app-input-field label="Field 2">
+    <select [value]="field2Value" #select (change)="onChangeDropdownField(select.value)">
+        <option value="value1">Value 1</option>
+        <option value="value2">Value 2</option>
+    </select>
+</app-input-field>

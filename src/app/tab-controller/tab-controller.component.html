@@ -3,25 +3,8 @@
     <a [routerLink]="['/tab', '2']">Tab 2</a>
 </nav>
 <ng-container [ngSwitch]="currentTabId">
-    <app-tab *ngSwitchCase="1">
-        <app-input-field label="Field 1">
-            <input />
-        </app-input-field>
-        <app-input-field label="Field 2">
-            <select>
-                <option value="value1">Value 1</option>
-                <option value="value2">Value 2</option>
-            </select>
-        </app-input-field>
-    </app-tab>
-    <app-tab *ngSwitchDefault>
-        <app-input-field label="Field 2">
-            <select>
-                <option value="value1">Value 1</option>
-                <option value="value2">Value 2</option>
-            </select>
-        </app-input-field>
-    </app-tab>
+    <app-tab1 *ngSwitchCase="1"></app-tab1>
+    <app-tab2 *ngSwitchDefault></app-tab2>
 </ng-container>
 
 

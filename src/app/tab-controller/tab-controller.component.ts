@@ -3,15 +3,17 @@ import { TabComponent } from '../tab/tab.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InputFieldComponent } from '../input-field/input-field.component';
+import { Tab1Component } from '../tab1/tab1.component';
+import { Tab2Component } from '../tab2/tab2.component';
 
 @Component({
   selector: 'app-tab-controller',
   standalone: true,
   imports: [
     CommonModule,
-    TabComponent,
     RouterModule,
-    InputFieldComponent,
+    Tab1Component,
+    Tab2Component,
   ],
   templateUrl: './tab-controller.component.html',
   styleUrls: ['./tab-controller.component.css']

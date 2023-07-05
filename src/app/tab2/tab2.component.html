@@ -1,0 +1,14 @@
+<app-input-field>
+    <input 
+        [value]="field3Value" 
+        #input 
+        (keyup)="onChangeTextField(input.value)"
+        (keyup.enter)="onSubmit()"
+    />
+</app-input-field>
+<ul>
+    <li *ngFor="let value of values; let i = index">
+        <button type="button" (click)="delete(i)">Delete</button>
+        {{value}}
+    </li>
+</ul>

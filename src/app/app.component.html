@@ -1,4 +1,7 @@
 <div>
   <button type="button" (click)="save()">Save</button>
 </div>
+<div *ngIf="hasError">
+  Ops! An error occurred!<button (click)="closeErrorMessage()">x</button>
+</div>
 <router-outlet></router-outlet>
