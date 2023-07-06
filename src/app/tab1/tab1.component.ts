@@ -1,11 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabComponent } from '../tab/tab.component';
 import { InputFieldComponent } from '../input-field/input-field.component';
-import { TabService } from '../tab/tab.service';
 
-const inputKeyName = 'tab1-input';
-const dropdownKeyName = 'tab1-select';
 const defaultDropdownValue = 'value1';
 
 @Component({
@@ -25,17 +22,21 @@ export class Tab1Component extends TabComponent{
   constructor() {
     super();
     const data = this.service.readData();
-    this.field1Value = data[inputKeyName] || '';
-    this.field2Value = data[dropdownKeyName] || defaultDropdownValue;
+    this.field1Value = data.tab1InputValue;
+    this.field2Value = data.tab1dropdownValue === '' 
+      ? defaultDropdownValue 
+      : data.tab1dropdownValue;
   }
 
   onChangeTextField(value: string): void {
     this.field1Value = value;
-    this.onChange({[inputKeyName]: this.field1Value})
+    this.onChange({tab1InputValue: this.field1Value})
   }
 
   onChangeDropdownField(value: string): void {
     this.field2Value = value;
-    this.onChange({[dropdownKeyName]: this.field2Value})
+    this.onChange({
+      tab1dropdownValue: this.field2Value
+    });
   }
 }

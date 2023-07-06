@@ -1,8 +1,11 @@
-import { Component, ErrorHandler } from '@angular/core';
+import { Component, ErrorHandler, inject } from '@angular/core';
 import { TabControllerComponent } from './tab-controller/tab-controller.component';
 import { RouterModule } from '@angular/router';
-import { AppErrorHandler } from 'src/error-handler';
+import { AppErrorHandler } from 'src/app/error-handler';
 import { CommonModule } from '@angular/common';
+import { TabService } from './tab/tab.service';
+import { TabData } from './interfaces/tab-service';
+import { StorageService } from './storage.service';
 
 @Component({
   selector: 'app-root',
@@ -12,27 +15,29 @@ import { CommonModule } from '@angular/common';
     TabControllerComponent,
     RouterModule
   ],
-  providers: [{provide: ErrorHandler, useClass: AppErrorHandler}],
+  providers: [
+    {provide: ErrorHandler, useClass: AppErrorHandler},
+    {provide: StorageService}
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  storage: StorageService = inject(StorageService);
+  tabService: TabService = inject(TabService);
+  errorHandler: AppErrorHandler = inject(ErrorHandler) as AppErrorHandler;
   title = 'two-tabs';
   hasError = false;
   timeoutId: any | null = null;
+  haveChanges: boolean = false;
 
-  constructor(private errorHandler: ErrorHandler) {
-    (errorHandler as AppErrorHandler).onError((error) => {
-      this.hasError = true; 
-      
-      if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
-      }
+  constructor() {
+    this.errorHandler.onError(this.errorHandlerCallback);
 
-      this.timeoutId = setTimeout(() => {
-        //hide the error message;
-        this.hasError = false;
-      }, 5000);
+    this.tabService.onChange(async (data: TabData) => {
+      const storageData = await this.storage.read();
+      const tabData = this.tabService.toStorageData();
+      this.haveChanges = !this.storage.isEqual(storageData, tabData);
     })
   }
 
@@ -41,7 +46,27 @@ export class AppComponent {
     clearTimeout(this.timeoutId!);
   }
 
-  save() {
-    console.log('The data is saved!')
+  async save() {
+    const data = this.tabService.toStorageData();
+    try {
+      await this.storage.save(data);
+      this.haveChanges = false;
+    } catch (error) {
+      this.errorHandler.handleError(error);
+      this.errorHandlerCallback(error);
+    }
+  }
+
+  private errorHandlerCallback(error: any) {
+    this.hasError = true; 
+      
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      //hide the error message;
+      this.hasError = false;
+    }, 5000);
   }
 }

@@ -1,5 +1,5 @@
 <div>
-  <button type="button" (click)="save()">Save</button>
+  <button type="button" (click)="save()" [disabled]="!haveChanges">Save</button>
 </div>
 <div *ngIf="hasError">
   Ops! An error occurred!<button (click)="closeErrorMessage()">x</button>

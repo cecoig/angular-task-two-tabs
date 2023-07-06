@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { TabComponent } from '../tab/tab.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { InputFieldComponent } from '../input-field/input-field.component';
 import { Tab1Component } from '../tab1/tab1.component';
 import { Tab2Component } from '../tab2/tab2.component';
 
@@ -25,7 +23,6 @@ export class TabControllerComponent {
   constructor(private router: Router, ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(event);
         this.currentTabId = this.route.snapshot.params['id'];
       }
     });

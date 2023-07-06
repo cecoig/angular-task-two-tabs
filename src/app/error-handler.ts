@@ -10,7 +10,6 @@ export class AppErrorHandler implements ErrorHandler {
             console.error(error);
             throw new  Error('The error above is not caught.');
         }
-        
     }
 
     onError(callback: (error: any) => void) {
