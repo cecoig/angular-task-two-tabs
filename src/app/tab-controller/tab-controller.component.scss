@@ -1,0 +1,33 @@
+$tab-border: solid 1px black;
+$tab-border-radius: 5px;
+
+.tabs-controller {
+    display: flex;
+    margin: 3rem 0 2rem;
+
+    &__element {
+        border: $tab-border;
+        padding: 0.5rem 2rem;
+        border-top-left-radius: $tab-border-radius;
+        border-top-right-radius: $tab-border-radius;
+
+        &--active {
+            border-bottom: none;
+        }
+
+        &:last-child {
+            flex-grow: 1;
+            border: none;
+            border-bottom: $tab-border;
+        }
+    }
+    
+    &__delimiter {
+        width: 5px;
+        border-bottom: $tab-border;
+    }
+}
+
+.tabs-container {
+    padding: 5rem 3rem;
+}

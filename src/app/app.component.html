@@ -1,7 +1,13 @@
-<div>
-  <button type="button" (click)="save()" [disabled]="!haveChanges">Save</button>
+<div class="main-container">
+  <div>
+    <button type="button" (click)="save()" [disabled]="!haveChanges">Save</button>
+  </div>
+  <div class="error" *ngIf="hasError">
+    <span class="error__message">Ops! An error occurred!</span>
+    <span class="error__button">
+      <delete-button (click)="closeErrorMessage()"></delete-button>
+    </span>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-<div *ngIf="hasError">
-  Ops! An error occurred!<button (click)="closeErrorMessage()">x</button>
-</div>
-<router-outlet></router-outlet>
+

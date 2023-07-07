@@ -13,7 +13,7 @@ const defaultDropdownValue = 'value1';
     InputFieldComponent,
   ],
   templateUrl: './tab1.component.html',
-  styleUrls: ['./tab1.component.css']
+  styleUrls: ['./tab1.component.scss']
 })
 export class Tab1Component extends TabComponent{
   @Input() field1Value!: string | string[];

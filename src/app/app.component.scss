@@ -1,0 +1,34 @@
+.main-container {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2rem;
+    font-size: 2rem;
+
+    @media screen and (min-width: 800px) {
+        width: 70%;
+    }
+
+    @media screen and (min-width: 1000px) {
+        width: 60%;
+    }
+}
+
+.error {
+    display: flex;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    background-color: rgba($color: #f80707, $alpha: 0.5);
+
+    &__message {
+        flex-grow: 1;
+    }
+
+    &__button {
+        text-align: right;
+    }
+}
+
+button {
+    width: 10rem;
+    padding: 1rem 2rem;
+}

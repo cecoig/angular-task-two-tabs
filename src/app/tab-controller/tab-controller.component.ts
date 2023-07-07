@@ -14,7 +14,7 @@ import { Tab2Component } from '../tab2/tab2.component';
     Tab2Component,
   ],
   templateUrl: './tab-controller.component.html',
-  styleUrls: ['./tab-controller.component.css']
+  styleUrls: ['./tab-controller.component.scss']
 })
 export class TabControllerComponent {
   route: ActivatedRoute = inject(ActivatedRoute);

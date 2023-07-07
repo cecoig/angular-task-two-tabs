@@ -1,11 +1,33 @@
-<nav>
-    <a [routerLink]="['/tab', '1']">Tab 1</a>
-    <a [routerLink]="['/tab', '2']">Tab 2</a>
+<nav class="tabs-controller">
+    <div class="tabs-controller__delimiter"></div>
+    <a 
+        [class]="{
+            'tabs-controller__element': true,
+            'tabs-controller__element--active': currentTabId === '1'
+        }" 
+        [routerLink]="['/tab', '1']"
+    >
+            Tab 1
+    </a>
+    <div class="tabs-controller__delimiter"></div>
+    <a 
+        [class]="{
+            'tabs-controller__element': true,
+            'tabs-controller__element--active': currentTabId === '2'
+        }" 
+        [routerLink]="['/tab', '2']"
+    >
+        Tab 2
+    </a>
+    <div class="tabs-controller__element"></div>
 </nav>
-<ng-container [ngSwitch]="currentTabId">
-    <app-tab1 *ngSwitchCase="1"></app-tab1>
-    <app-tab2 *ngSwitchDefault></app-tab2>
-</ng-container>
+<div class="tabs-container">
+    <ng-container [ngSwitch]="currentTabId">
+        <app-tab1 *ngSwitchCase="1"></app-tab1>
+        <app-tab2 *ngSwitchDefault></app-tab2>
+    </ng-container>
+</div>
+
 
 
 

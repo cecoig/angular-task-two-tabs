@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabComponent } from '../tab/tab.component';
 import { InputFieldComponent } from '../input-field/input-field.component';
+import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 
 @Component({
   selector: 'app-tab2',
@@ -9,9 +10,10 @@ import { InputFieldComponent } from '../input-field/input-field.component';
   imports: [
     CommonModule,
     InputFieldComponent,
+    DeleteButtonComponent,
   ],
   templateUrl: './tab2.component.html',
-  styleUrls: ['./tab2.component.css']
+  styleUrls: ['./tab2.component.scss']
 })
 export class Tab2Component extends TabComponent{
   @Input() field3Value!: string;

@@ -1,0 +1,17 @@
+input {
+    width: 18rem;
+}
+
+.item {
+    &__delete-button {
+        visibility: hidden;
+    }
+
+    &:hover &__delete-button {
+        visibility: visible;
+    }
+
+    &__text {
+        margin-left: 1rem;
+    }
+}

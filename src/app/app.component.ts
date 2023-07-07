@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { TabService } from './tab/tab.service';
 import { TabData } from './interfaces/tab-service';
 import { StorageService } from './storage.service';
+import { DeleteButtonComponent } from './delete-button/delete-button.component';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,15 @@ import { StorageService } from './storage.service';
   imports: [
     CommonModule,
     TabControllerComponent,
-    RouterModule
+    RouterModule,
+    DeleteButtonComponent,
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler},
     {provide: StorageService}
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   storage: StorageService = inject(StorageService);

@@ -1,5 +1,6 @@
 <app-input-field>
     <input 
+        placeholder="Add text and press Enter"
         [value]="field3Value" 
         #input 
         (keyup)="onChangeTextField(input.value)"
@@ -7,8 +8,10 @@
     />
 </app-input-field>
 <ul>
-    <li *ngFor="let value of values; let i = index">
-        <button type="button" (click)="delete(i)">Delete</button>
-        {{value}}
+    <li class="item" *ngFor="let value of values; let i = index">
+        <span class="item__delete-button">
+            <delete-button (click)="delete(i)"></delete-button>
+        </span>
+        <span class="item__text">{{value}}</span>
     </li>
 </ul>
