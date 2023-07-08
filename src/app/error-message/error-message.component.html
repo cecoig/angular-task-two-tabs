@@ -1,0 +1,8 @@
+<div class="error" *ngIf="hasError">
+  <span class="error__message">
+    <ng-content></ng-content>
+  </span>
+  <span class="error__button">
+    <delete-button (click)="closeErrorMessage()"></delete-button>
+  </span>
+</div>

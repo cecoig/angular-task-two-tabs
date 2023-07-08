@@ -13,21 +13,6 @@
     }
 }
 
-.error {
-    display: flex;
-    margin: 2rem 0;
-    padding: 1rem 2rem;
-    background-color: rgba($color: #f80707, $alpha: 0.5);
-
-    &__message {
-        flex-grow: 1;
-    }
-
-    &__button {
-        text-align: right;
-    }
-}
-
 button {
     width: 10rem;
     padding: 1rem 2rem;

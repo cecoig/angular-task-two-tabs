@@ -1,6 +1,9 @@
+/**
+ * The component display text field and a list with all added strings.
+ */
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabComponent } from '../tab/tab.component';
+import { BaseTabComponent } from '../tab/tab.component';
 import { InputFieldComponent } from '../input-field/input-field.component';
 import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 
@@ -15,7 +18,7 @@ import { DeleteButtonComponent } from '../delete-button/delete-button.component'
   templateUrl: './tab2.component.html',
   styleUrls: ['./tab2.component.scss']
 })
-export class Tab2Component extends TabComponent{
+export class Tab2Component extends BaseTabComponent{
   @Input() field3Value!: string;
   values: string[] = [];
 

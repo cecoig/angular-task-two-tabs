@@ -1,3 +1,7 @@
+/**
+ * The component is the app entry point.
+ * It displays the save button, the error message and the current tab.
+ */
 import { Component, ErrorHandler, inject } from '@angular/core';
 import { TabControllerComponent } from './tab-controller/tab-controller.component';
 import { RouterModule } from '@angular/router';
@@ -6,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { TabService } from './tab/tab.service';
 import { TabData } from './interfaces/tab-service';
 import { StorageService } from './storage.service';
-import { DeleteButtonComponent } from './delete-button/delete-button.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +19,7 @@ import { DeleteButtonComponent } from './delete-button/delete-button.component';
     CommonModule,
     TabControllerComponent,
     RouterModule,
-    DeleteButtonComponent,
+    ErrorMessageComponent,
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler},
@@ -29,23 +33,22 @@ export class AppComponent {
   tabService: TabService = inject(TabService);
   errorHandler: AppErrorHandler = inject(ErrorHandler) as AppErrorHandler;
   title = 'two-tabs';
-  hasError = false;
-  timeoutId: any | null = null;
   haveChanges: boolean = false;
 
   constructor() {
-    this.errorHandler.onError(this.errorHandlerCallback);
+    this.storage.read()
+      .then((initialData) => {
+        this.tabService.setData(initialData);
+      })
+      .catch((error) => {
+        this.errorHandler.handleError(error);
+      });
 
     this.tabService.onChange(async (data: TabData) => {
       const storageData = await this.storage.read();
       const tabData = this.tabService.toStorageData();
       this.haveChanges = !this.storage.isEqual(storageData, tabData);
     })
-  }
-
-  closeErrorMessage() {
-    this.hasError = false;
-    clearTimeout(this.timeoutId!);
   }
 
   async save() {
@@ -55,20 +58,6 @@ export class AppComponent {
       this.haveChanges = false;
     } catch (error) {
       this.errorHandler.handleError(error);
-      this.errorHandlerCallback(error);
     }
-  }
-
-  private errorHandlerCallback(error: any) {
-    this.hasError = true; 
-      
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
-
-    this.timeoutId = setTimeout(() => {
-      //hide the error message;
-      this.hasError = false;
-    }, 5000);
   }
 }

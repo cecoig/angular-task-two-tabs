@@ -1,3 +1,8 @@
+/**
+ * The component is tabs wrapper and provide a logic for managing them and 
+ * switching between the tabs.
+ */
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';

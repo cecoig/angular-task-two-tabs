@@ -1,19 +1,35 @@
+/**
+ * The service read and store data from the local storage.
+ * The class implements the IStorageService.
+ */
 import { Injectable } from '@angular/core';
 import { IStorageService, StorageData } from './interfaces/storage-service';
 
 const localStorageKey = 'tabs-app'
+const emptyStorageObject: StorageData= {
+  field1: '',
+  field2: 'value1',
+  field3: [],
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService implements IStorageService {
+  
   async save(data: StorageData): Promise<void> {
     const json = JSON.stringify(data);
     window.localStorage.setItem(localStorageKey,json);
   }
 
   async read(): Promise<StorageData> {
-    const storageData = window.localStorage.getItem(localStorageKey);
+    const storageData = window.localStorage.getItem(localStorageKey);     
+
+    if (storageData === null) {
+      this.save(emptyStorageObject);
+      return emptyStorageObject;
+    }
+
     const data = JSON.parse(storageData!);
     return data;
   }

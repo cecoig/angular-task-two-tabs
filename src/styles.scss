@@ -9,4 +9,8 @@ html {
         font-size: 1.5rem;
         padding: 8px;
     }
+
+    @media screen and (max-width: 350px) {
+       font-size: 8px;
+    }
 }

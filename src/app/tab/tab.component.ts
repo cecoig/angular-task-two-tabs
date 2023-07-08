@@ -1,3 +1,8 @@
+/**
+ * The component is based class and bring the logic for keeping the values in the memory.
+ * When the component is recreated the last value will be recover.
+ */
+
 import { Component, inject } from '@angular/core';
 import { ITab } from '../interfaces/tab';
 import { TabService } from './tab.service';
@@ -7,7 +12,7 @@ import { ITabService, TabData } from '../interfaces/tab-service';
   template: '',
   providers: [TabService],
 })
-export abstract class TabComponent implements ITab {
+export abstract class BaseTabComponent implements ITab {
   service: ITabService = inject(TabService);
   data: TabData = this.service.readData();
 

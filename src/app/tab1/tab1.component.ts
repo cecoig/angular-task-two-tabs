@@ -1,6 +1,9 @@
+/**
+ * The component displays a text field and dropdown.
+ */
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabComponent } from '../tab/tab.component';
+import { BaseTabComponent } from '../tab/tab.component';
 import { InputFieldComponent } from '../input-field/input-field.component';
 
 const defaultDropdownValue = 'value1';
@@ -15,7 +18,7 @@ const defaultDropdownValue = 'value1';
   templateUrl: './tab1.component.html',
   styleUrls: ['./tab1.component.scss']
 })
-export class Tab1Component extends TabComponent{
+export class Tab1Component extends BaseTabComponent{
   @Input() field1Value!: string | string[];
   @Input() field2Value!: string | string[];
 
